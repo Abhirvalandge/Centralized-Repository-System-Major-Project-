@@ -1,0 +1,32 @@
+{% extends 'templates/base2.html' %}
+    {% block body_block %}
+      <section style="margin-top: 10%" id="services" class="services">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                {% if main_title %}
+                    <h2>{{ main_title|upper }} Schemes List</h2>
+                {% endif %}
+            </div>
+        </div>
+        <div class="list_content">
+                {% block content %}
+                    {% if schemes_list %}
+                        {% for post in post  %}
+                            <a href="{{ post.get_absolute_url }}"><h2>{{ post.title }}</h2></a>
+                            <p id="date">Published on {{ post.publish }}</p>
+                                {{ post.body|linebreaks }}
+                            <p>Apply Link:- {{ post.link }}</p>
+                            <a href="{{ post.link }}" type="submit" class="btn btn-lg btn-danger">Apply</a>&nbsp;&nbsp;&nbsp;<hr>
+                        {% endfor %}
+                        {% include 'templates/pagination.html' with page=post %}
+                     {% else %}
+                        <p>No Schemes here...!</p>
+                    {% endif %}
+
+                {% endblock %}
+
+        </div>
+
+      </section><!-- End Services Section -->
+
+    {% endblock %}

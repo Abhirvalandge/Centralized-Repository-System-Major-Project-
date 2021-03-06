@@ -1,0 +1,106 @@
+{% extends 'templates/base.html' %}
+{% block body_block %}
+    <section id="services" class="services">
+        {% if sign_up_title %}
+            <div class="container1">
+                <div class="section-title" style="margin-top: 5%; margin-left: -15%;">
+                    <h2>{{ sign_up_title|upper }}</h2>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fn">First Name:</label>
+                        </div>
+                        <div class="col-75">
+                            <span id="fn">{{ form.first_name }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="ln">Last Name:</label>
+                        </div>
+                        <div class="col-75">
+                            <span id="ln">{{ form.last_name }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="email">Email:</label>
+                        </div>
+                        <div class="col-75">
+                            <span id="email">{{ form.email }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="p1">Password:</label>
+                        </div>
+                        <div class="col-75">
+                            <span id="p1">{{ form.password }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="p2">Confirm Password:</label>
+                        </div>
+                        <div class="col-75">
+                            <span id="p2">{{ form.confirm_password }}</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="signup">
+                        <input type="submit" class="btn btn-lg btn-success" value="Sign Up"><br><br><br>
+                        <p>If You have already an account<a href="/sign_in">SignIn</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+        {% if sign_in_title %}
+
+            <div class="container1">
+                <div class="section-title" style="margin-top: 5%; margin-left: -15%;">
+                    <h2>{{ sign_in_title|upper }}</h2>
+                </div>
+                <form  method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="email">Email:</label>
+                        </div>
+                        <div class="col-75">
+                            <span id="email">{{ form.email }}</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="p1">Password:</label>
+                        </div>
+                        <div class="col-75">
+                            <span id="p1">{{ form.password }}</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="signup">
+                            <input type="submit" class="btn btn-lg btn-success" value="Login"><br><br><br>
+                            <p>If You Don't have an account? <a href="/signup">SignUp</a></p>
+                        </div>
+                        {% if messages %}
+                            <div style="width: 70%" class="alert alert-danger">
+                                {% for message in messages %}
+                                    <h6 align="center">{{ message }}</h6>
+                                {% endfor %}
+
+                            </div>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+    </section><!-- End Services Section -->
+
+{% endblock %}

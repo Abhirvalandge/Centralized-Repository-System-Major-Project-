@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'templates/base2.html' %}
+    {% block body_block %}
+          <!-- ======= Services Section ======= -->
+    <section style="margin-top: 10%" id="services" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Government Jobs</h2>
+        </div>
+
+        <div class="list_content">
+                {% block content %}
+                    {% if jobs_list %}
+                        {% for post in post  %}
+                            <a href="{{ post.get_absolute_url }}"><h2>{{ post.title }}</h2></a>
+                            <p id="date">Published on {{ post.publish }}</p>
+                                {{ post.body|linebreaks }}
+                            <p>Apply Link:- {{ post.link }}</p>
+                            <a href="{{ post.link }}" type="submit" class="btn btn-lg btn-danger">Apply</a>&nbsp;&nbsp;&nbsp;
+                            <a href="#" type="submit" class="btn btn-lg btn-primary">Share Scheme by Email</a><hr>
+                        {% endfor %}
+                        {% include 'templates/pagination.html' with page=post %}
+                     {% else %}
+                        <p>No Schemes here...!</p>
+                    {% endif %}
+                {% endblock %}
+        </div>
+      </div>
+    </section><!-- End Services Section -->
+
+    {% endblock %}
